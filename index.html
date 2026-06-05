@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第七重解答</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- 开幕黑屏：玩家第一眼看到的剧情入口 -->
+  <section id="intro" class="intro-screen">
+    <div class="intro-content">
+      <div class="intro-lines">
+        <p class="intro-line line-one">是谁关上了门，又是谁推开了门？</p>
+        <p class="intro-line line-two">是谁改写了时间，又是谁在教人说谎？</p>
+        <p class="intro-line line-three">谁把谎言粉饰成真相，谁把喉舌变成利刃？</p>
+        <p class="intro-line welcome-line">欢迎您，侦探阁下</p>
+      </div>
+      <button id="enterButton" class="primary-button" type="button">进入梅洛尔德庄园</button>
+    </div>
+  </section>
+
+  <!-- 主游戏页面：进入游戏后显示，默认由 CSS 隐藏 -->
+  <main id="game" class="game hidden">
+    <section id="sceneContainer" class="scene-container" aria-label="叙事章节"></section>
+  </main>
+
+  <!-- 中场推演界面：第三幕完成后进入，点击两张线索卡片生成红线 -->
+  <section id="interludeBoard" class="interlude-board hidden" aria-label="中场推演">
+    <div class="interlude-noise" aria-hidden="true"></div>
+
+    <header class="interlude-header">
+      <p class="interlude-kicker"></p>
+      <p id="interludeProgress" class="interlude-progress">1 / 3</p>
+      <h2>中场推演</h2>
+      <p>请连接你认为存在关联的线索。</p>
+    </header>
+
+    <div class="interlude-layout">
+      <div id="interludeCardArea" class="interlude-card-area">
+        <svg id="interludeLineLayer" class="interlude-line-layer" aria-hidden="true"></svg>
+        <div id="interludeQuestionPanel" class="interlude-question-panel">
+          <p id="interludeQuestionLabel" class="interlude-question-label"></p>
+          <h3 id="interludeCurrentQuestion">卧室真的是密室吗？</h3>
+          <p class="interlude-question-tip">选择两条你认为存在关联的线索。</p>
+          <p id="interludeHint" class="interlude-hint">点击两张卡片，尝试建立线索关联。</p>
+        </div>
+        <div id="interludeCards" class="interlude-cards"></div>
+        <div id="interludeConclusion" class="interlude-conclusion hidden"></div>
+        <div id="interludeSummary" class="interlude-summary hidden"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 第四幕过渡页：中场推演淡出后出现，再由玩家确认进入第四幕正文 -->
+  <section id="chapterFourPrelude" class="chapter-four-prelude hidden" aria-label="第四幕过渡">
+    <div class="chapter-four-prelude-inner">
+      <h2>第四幕，谋杀死者</h2>
+      <button id="confirmChapterFourButton" class="primary-button hidden" type="button">进入第四幕</button>
+    </div>
+  </section>
+
+  <!-- 线索弹层：点击“开始推理”后打开 -->
+  <div id="clueModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <div>
+          <p id="modalKicker" class="modal-kicker">当前章节</p>
+          <h2 id="modalTitle">线索调查</h2>
+        </div>
+        <button id="closeModalButton" class="icon-button" type="button" aria-label="关闭线索面板">×</button>
+      </div>
+
+      <p id="modalHint" class="modal-hint">点击线索卡片查看详情，认为重要时可以标记为关键线索。</p>
+      <div id="clueGrid" class="clue-grid"></div>
+      <div id="clueDetail" class="clue-detail">请选择一张线索卡片。</div>
+      <p id="unlockMessage" class="unlock-message"></p>
+    </div>
+  </div>
+
+  <!-- 序幕完成反馈层：先播放短暂演出，再显示推理总结 -->
+  <div id="chapter-complete-overlay" class="chapter-complete-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="chapter-complete-title">
+    <div class="complete-interference" aria-hidden="true"></div>
+    <p id="complete-animation-text" class="complete-animation-text">第一重问题正在浮现</p>
+
+    <div id="chapter-complete-panel" class="chapter-complete-panel hidden">
+      <h2 id="chapter-complete-title">序幕推演</h2>
+      <p class="chapter-complete-subtitle">你已捕捉到大厅中的异常。</p>
+      <p id="recorded-key-count" class="recorded-key-count">本章已记录的关键线索：0 / 0</p>
+      <div id="recorded-key-icons" class="recorded-key-icons"></div>
+      <p id="chapter-complete-feedback" class="chapter-complete-feedback"></p>
+      <button id="enterNextSceneButton" class="primary-button" type="button">进入第一幕：锁死的书房</button>
+    </div>
+  </div>
+
+  <!-- 最终推理弹层：最后一幕解锁后使用 -->
+  <div id="finalModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="finalTitle">
+    <div class="modal-panel final-panel">
+      <div class="modal-header">
+        <div>
+          <p class="modal-kicker">FINAL INQUEST</p>
+          <h2 id="finalTitle">最终推理记录</h2>
+        </div>
+        <button id="closeFinalButton" class="icon-button" type="button" aria-label="关闭最终推理">×</button>
+      </div>
+
+      <p class="modal-hint">请逐项确认你的推理。答案进入下一题后，将不可修改。</p>
+      <div id="answerList" class="answer-list"></div>
+      <button id="submitFinalButton" class="primary-button final-submit" type="button">提交推理</button>
+      <div id="endingBox" class="ending-box hidden"></div>
+    </div>
+  </div>
+
+  <!-- 底部固定进度条：显示当前解锁进度 -->
+  <footer class="progress-footer" aria-label="游戏进度">
+    <div class="progress-info">
+      <span id="progressText">案件推进：0 / 7</span>
+      <span id="progressPercent">0%</span>
+    </div>
+    <div class="progress-track">
+      <div id="progressBar" class="progress-bar"></div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
