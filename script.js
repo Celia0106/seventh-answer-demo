@@ -9,7 +9,7 @@ const clues = [
     chapter: "prologue",
     title: "邀请函",
     preview: "六封邀请函来自同一个不存在的名字。",
-    description: "六封邀请函的纸质、火漆和笔迹完全一致。落款处写着‘M.L.R.D’。可是管家坚称，庄园历任主人名册中，从未出现过这个姓氏。",
+    description: "六封邀请函的纸质、火漆和笔迹完全一致。落款处写着‘<span class=\"story-emphasis red\">M.L.R.D</span>’。可是管家坚称，庄园历任主人名册中，从未出现过这个姓氏。",
     isKey: false,
     icon: "invitation"
   },
@@ -584,7 +584,7 @@ const scenes = [
         "俞以清，医生。",
         "他们都收到了一封邀请函。",
         "邀请函的落款是同一个名字：",
-        "M.L.R.D。他们猜测这是梅洛尔德庄园的缩写",
+        "<span class=\"story-emphasis red\">M.L.R.D</span>。他们猜测这是梅洛尔德庄园的缩写",
         "可庄园管家说，这座庄园从来没有过叫梅洛尔德的主人。"
       ],
       [
@@ -734,7 +734,7 @@ const scenes = [
       ],
       [
         "“死亡时间大约在一点十分到一点二十之间。她离开大厅后不久，应该就已经失去意识了。”",
-        "“我的意思是，在场的所有人，包括我，都没有完整的不在场证明。”",
+        "“我的意思是，<span class=\"story-emphasis red\">在场的所有人，包括我，都没有完整的不在场证明</span>。”",
         "大厅陷入了古怪的沉默，所有人都默契地选择不接话，不开口。",
         "俞以清没有看其他人的反应，她只是把医疗箱扣上。"
       ],
@@ -968,7 +968,8 @@ const scenes = [
       ],
       [
         "乌云弥漫在幸存者的心里，所有人都在场，所有人都有完美的不在场证明，那么，是谁杀了他？",
-        "是幽灵吗？是幽灵吧。沈知微说的——人在极度恐惧时，就会看见的幽灵。"
+        "是幽灵吗？是幽灵吧。",
+        "沈知微说的——人在极度恐惧时，就会看见的幽灵。"
       ]
     ],
     clues: clues.filter((clue) => clue.chapter === "chapter-three")
@@ -1265,7 +1266,7 @@ const scenes = [
         "许燃死后，也是她盖上白布。",
         "她总是站在死亡旁边。如影随形。",
         "林舟渡又后退了半步，她的眼中泛起恐惧：",
-        "“你到底是谁？”"
+        "“<span class=\"story-emphasis red\">你到底是谁？</span>”"
       ],
       [
         "俞以清抬起头。那一瞬间，林舟渡觉得她的眼神有些陌生。",
@@ -1410,7 +1411,7 @@ const scenes = [
         "“不是我！”",
         "“我没有碰她！”",
         "林舟渡拿手捂住自己的耳朵，像坏掉的老旧收音机，一直重复着同一句台词。",
-        "“不是我不是我不是我不是我不是我。”",
+        "“<span class=\"story-emphasis red panic-red\">不是我不是我不是我不是我不是我。</span>”",
         "她的脸色惨白，是梦吗？这一定是一场噩梦吧。",
         "她觉得自己快疯了。",
         "因为这一切都太像真的。",
@@ -1566,7 +1567,7 @@ const scenes = [
         "林舟渡大着胆子去探了探他的鼻息，发现许燃已经没气了。",
         "同一个人，换了种死法，出现在了完全不该出现的地方。",
         "许燃说过，死人不会开口。那么，林舟渡的声音很轻，",
-        "“尸体为什么会自己移动？”"
+        "“<span class=\"story-emphasis red\">尸体为什么会自己移动？</span>”"
       ],
       [
         "林舟渡慢慢走近。",
@@ -1660,7 +1661,7 @@ const scenes = [
         "一个又一个名字从她脑海中滑过，又尽数从她的眼眶里流走，像那场来势汹汹的暴风雪。",
         "她忽然笑了一声。",
         "她又想起沈知微说过的话了。",
-        "“人在极端恐惧下，确实可能看见不存在的东西。”",
+        "“<span class=\"story-emphasis red\">人在极端恐惧下，确实可能看见不存在的东西。</span>”",
         "她以前不信。现在她信了。",
         "因为她开始看见他们。"
       ],
@@ -1681,13 +1682,13 @@ const scenes = [
         "暴风雪已经停了，这里的炉火烧得很旺，但是林舟渡还是感觉到了刺骨的寒意。"
       ],
       [
-        "不是我！！！",
+        "<span class=\"story-emphasis red panic-red\">不是我！！！</span>",
         "她冲着空无一人的大厅大喊。然后跑到了三楼，她拼命往后退，一边退一边摇头。",
         "十年前的事情，我们都有错，你们现在有什么资格来找我！",
         "她的嘴唇哆嗦着。",
-        "不是我。",
-        "不是我不是我不是我不是我不是我不是我不是我。",
-        "不是我杀的。"
+        "<span class=\"story-emphasis red panic-red\">不是我。</span>",
+        "<span class=\"story-emphasis red panic-red\">不是我不是我不是我不是我不是我不是我不是我。</span>",
+        "<span class=\"story-emphasis red panic-red\">不是我杀的。</span>"
       ],
       [
         "然后她看见了，",
@@ -1700,7 +1701,7 @@ const scenes = [
       [
         "林舟渡握紧了手中的银质小刀，边颤抖边后退，",
         "“别过来！”",
-        "“不是我杀的你们！”",
+        "“<span class=\"story-emphasis red panic-red\">不是我杀的你们！</span>”",
         "她又退了一步，",
         "再一步。",
         "三楼的围栏年久失修，林舟渡在靠上栏杆的那一刻，身后一空，她没有来得及说最后一句话。"
@@ -2381,6 +2382,24 @@ Memory Lives ，Revenge Delivers.
 
 无人遗忘，便无人脱身。`
   },
+  rookie: {
+    title: "？？？结局：菜鸟侦探",
+    body: `你的脑子一团浆糊。
+
+什么也没有弄明白。
+
+你胡乱指认凶手。
+
+最后得出结论：
+
+梅洛尔德庄园里有幽灵。
+
+警方最终将你赶了出去。
+
+他们不再希望一个连发生了什么都弄不明白的家伙来干扰调查。
+
+你在侦探界名誉扫地。`
+  },
   ending1: {
     title: "结局一：幸存者的疯癫",
     body: `你最终没有查出真相。
@@ -2726,6 +2745,19 @@ function getStorySketchHtml(text) {
         <path pathLength="1" d="M57 36c4 4 5 10 2 15" />
       </svg>
     `,
+    clock: `
+      <svg viewBox="0 0 96 104" focusable="false">
+        <path pathLength="1" d="M38 12h20" />
+        <path pathLength="1" d="M48 12v10" />
+        <path pathLength="1" d="M28 24c-10 7-16 18-16 31c0 22 16 38 36 38s36-16 36-38c0-13-6-24-16-31" />
+        <path pathLength="1" d="M22 55a26 26 0 1 0 52 0a26 26 0 1 0-52 0" />
+        <path pathLength="1" d="M48 55V39" />
+        <path pathLength="1" d="M48 55l12 9" />
+        <path pathLength="1" d="M31 20l-8-8" />
+        <path pathLength="1" d="M65 20l8-8" />
+        <path class="sketch-accent sketch-pendulum" pathLength="1" d="M48 82c-3 6-5 10-8 13m8-13c3 6 5 10 8 13" />
+      </svg>
+    `,
     key: `
       <svg viewBox="0 0 96 80" focusable="false">
         <path pathLength="1" d="M22 40a15 15 0 1 0 30 0a15 15 0 1 0-30 0" />
@@ -2742,6 +2774,16 @@ function getStorySketchHtml(text) {
         <path pathLength="1" d="M34 42h18" />
         <path pathLength="1" d="M32 54h32" />
         <path pathLength="1" d="M66 36a5 5 0 1 0 10 0a5 5 0 1 0-10 0" />
+      </svg>
+    `,
+    tape: `
+      <svg viewBox="0 0 112 78" focusable="false">
+        <path pathLength="1" d="M20 18h72a10 10 0 0 1 10 10v28a10 10 0 0 1-10 10H20a10 10 0 0 1-10-10V28a10 10 0 0 1 10-10z" />
+        <path pathLength="1" d="M28 34a11 11 0 1 0 22 0a11 11 0 1 0-22 0" />
+        <path pathLength="1" d="M63 34a11 11 0 1 0 22 0a11 11 0 1 0-22 0" />
+        <path pathLength="1" d="M39 34h35" />
+        <path pathLength="1" d="M31 56h50" />
+        <path class="sketch-accent" pathLength="1" d="M88 12l6-6m0 13l8-2m-15-8l-2-7" />
       </svg>
     `,
     mirror: `
@@ -2842,6 +2884,10 @@ function getStorySketchHtml(text) {
 }
 
 function getStorySketchType(text) {
+  if (text.includes("大厅的钟声敲过零点")) {
+    return "clock";
+  }
+
   if (text.includes("红光忽然灭了") || text.includes("盥洗室的灯灭了")) {
     return "lamp";
   }
@@ -2852,6 +2898,10 @@ function getStorySketchType(text) {
 
   if (text.includes("一支沾着灰的录音笔。")) {
     return "recorder";
+  }
+
+  if (text.includes("录音里传来一声极轻的金属碰撞声")) {
+    return "tape";
   }
 
   if (text.includes("裂痕从中央斜斜划过") || text.includes("裂开的镜面里") || text.includes("裂开的镜子")) {
@@ -3221,7 +3271,7 @@ function playChapterCompleteAnimation(chapterId) {
   }
 
   deductionTargetSceneIndex = Math.min(getSceneIndexByChapter(chapterId) + 1, scenes.length - 1);
-  updateCaseProgress(scene.completionStep || deductionTargetSceneIndex);
+  updateCaseProgress(chapterId === "chapter-three" ? getSceneIndexByChapter(chapterId) : (scene.completionStep || deductionTargetSceneIndex));
   closeClueModal();
   renderScenes();
 
@@ -3292,6 +3342,23 @@ function getFeedbackHtml(message) {
 function updateCaseProgress(step) {
   unlockedSceneIndex = Math.max(unlockedSceneIndex, step);
   updateProgress();
+  refreshSceneLocks();
+}
+
+function refreshSceneLocks() {
+  document.querySelectorAll(".scene").forEach((section, index) => {
+    const isLocked = index > unlockedSceneIndex;
+    section.classList.toggle("locked", isLocked);
+
+    section.querySelectorAll("[data-scene-index]").forEach((button) => {
+      button.disabled = isLocked;
+    });
+
+    const status = section.querySelector(".scene-status");
+    if (status) {
+      status.textContent = getSceneStatusText(index);
+    }
+  });
 }
 
 function goToFirstChapter() {
@@ -4130,6 +4197,14 @@ function showFinalQuizResult() {
   finalModal.classList.remove("final-red-inquest");
   document.body.classList.add("final-ending-transition");
 
+  if (result.endingKey === "celia") {
+    window.setTimeout(() => {
+      document.body.classList.remove("final-ending-transition");
+      renderCeliaEasterEggScreen(result);
+    }, 820);
+    return;
+  }
+
   window.setTimeout(() => {
     document.body.classList.remove("final-ending-transition");
     renderFinalScoreScreen(result);
@@ -4183,11 +4258,53 @@ function renderFinalScoreScreen(result) {
   `;
 }
 
+function renderCeliaEasterEggScreen(result) {
+  const finalEndingScreen = getFinalEndingScreen();
+  const endings = [
+    getDebugEndingResult("rookie"),
+    getDebugEndingResult("ending1"),
+    getDebugEndingResult("ending2"),
+    getDebugEndingResult("true")
+  ];
+
+  finalEndingScreen.className = "final-ending-screen celia-easter-screen";
+  finalEndingScreen.innerHTML = `
+    <div class="final-ending-inner celia-easter-inner">
+      <p class="final-ending-kicker">FOURTH WALL BREACH</p>
+      <p class="celia-easter-line story-line">恭喜！你发现了作者留下的彩蛋。</p>
+      <p class="celia-easter-line story-line" style="transition-delay: 0.18s">嗯，打破第四面墙，怎么不算推理的一部分呢？</p>
+      <div class="celia-ending-grid story-line" style="transition-delay: 0.42s">
+        ${endings.map((ending) => `
+          <button class="celia-ending-choice" type="button" data-ending-select="${ending.endingKey}">
+            <span>${ending.endingTitleHtml}</span>
+          </button>
+        `).join("")}
+      </div>
+    </div>
+  `;
+
+  finalEndingScreen.scrollTop = 0;
+  window.setTimeout(() => {
+    observeStoryText();
+    bindCeliaEndingChoices();
+  }, 80);
+}
+
+function bindCeliaEndingChoices() {
+  document.querySelectorAll("[data-ending-select]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const selectedResult = getDebugEndingResult(button.dataset.endingSelect);
+      showFinalEndingScreen(selectedResult);
+    });
+  });
+}
+
 function renderFinalEndingScreen(result) {
   const finalEndingScreen = getFinalEndingScreen();
   const story = finalEndingStories[result.endingKey] || finalEndingStories.ending1;
   const endingPages = getEndingStoryPages(story.body);
   const storyPages = endingPages.map((pageLines, pageIndex) => {
+    const isLastEndingPage = pageIndex === endingPages.length - 1;
     const linesHtml = pageLines.map((text, lineIndex) => {
       const delay = `${lineIndex * 0.16}s`;
       const emphasisClass = getEndingLineClass(text);
@@ -4199,7 +4316,7 @@ function renderFinalEndingScreen(result) {
       <section class="final-ending-story-page">
         <div class="final-ending-story-inner">
           ${linesHtml}
-          ${pageIndex < endingPages.length - 1 ? `<div class="scroll-cue ending-scroll-cue" aria-hidden="true"></div>` : ""}
+          ${isLastEndingPage ? getFinalRetryArchiveHtml() : `<div class="scroll-cue ending-scroll-cue" aria-hidden="true"></div>`}
         </div>
       </section>
     `;
@@ -4221,7 +4338,57 @@ function renderFinalEndingScreen(result) {
   window.setTimeout(() => {
     observeStoryText();
     observeStorySketches();
+    bindFinalRetryArchive();
   }, 80);
+}
+
+function getFinalRetryArchiveHtml() {
+  return `
+    <div class="final-retry-archive story-line" style="transition-delay: 0.64s">
+      <button class="final-retry-file-button" type="button" data-final-retry-file aria-label="重新步入迷雾">
+        <svg viewBox="0 0 92 92" aria-hidden="true" focusable="false">
+          <path pathLength="1" d="M26 12h28l14 15v53H26z" />
+          <path pathLength="1" d="M54 12v16h14" />
+          <path pathLength="1" d="M34 42h24" />
+          <path pathLength="1" d="M34 54h18" />
+          <path pathLength="1" d="M34 66h26" />
+        </svg>
+      </button>
+      <div class="final-retry-question" data-final-retry-question>
+        <p>是否重新步入迷雾</p>
+        <div>
+          <button type="button" data-final-retry-yes>是</button>
+          <button type="button" data-final-retry-no>否</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function bindFinalRetryArchive() {
+  const retryArchive = document.querySelector(".final-retry-archive");
+
+  if (!retryArchive) {
+    return;
+  }
+
+  retryArchive.querySelector("[data-final-retry-file]")?.addEventListener("click", () => {
+    retryArchive.classList.add("is-asking");
+  });
+
+  retryArchive.querySelector("[data-final-retry-no]")?.addEventListener("click", () => {
+    retryArchive.classList.remove("is-asking");
+  });
+
+  retryArchive.querySelector("[data-final-retry-yes]")?.addEventListener("click", () => {
+    const finalEndingScreen = document.querySelector("#finalEndingScreen");
+
+    if (finalEndingScreen) {
+      finalEndingScreen.classList.add("hidden");
+    }
+
+    openFinalModal();
+  });
 }
 
 function getFinalQuizResult() {
@@ -4230,13 +4397,24 @@ function getFinalQuizResult() {
   }, 0);
   const isQ9Correct = isFinalAnswerCorrect(finalQuestions[8]);
   const isQ11Correct = isFinalAnswerCorrect(finalQuestions[10]);
+  const isCeliaAnswer = normalizeFinalAnswer(finalQuizState.answers.q11 || "") === "celia";
   let endingTitle = "结局二：错影";
   let endingLabel = "结局二";
   let endingClass = "ending-wrong-shadow";
   let endingKey = "ending2";
   let note = "";
 
-  if (!isQ9Correct || correctCount <= 6) {
+  if (isCeliaAnswer) {
+    endingTitle = "彩蛋：第四面墙";
+    endingLabel = "彩蛋";
+    endingClass = "ending-celia";
+    endingKey = "celia";
+  } else if (correctCount <= 3) {
+    endingTitle = "？？？结局：菜鸟侦探";
+    endingLabel = "？？？结局";
+    endingClass = "ending-rookie";
+    endingKey = "rookie";
+  } else if (!isQ9Correct || correctCount <= 6) {
     endingTitle = "结局一：幸存者的疯癫";
     endingLabel = "结局一";
     endingClass = "ending-madness";
@@ -4271,6 +4449,14 @@ function getFinalQuizResult() {
 }
 
 function getFinalEndingTitleHtml(endingTitle) {
+  if (endingTitle.includes("菜鸟侦探")) {
+    return `<span class="final-ending-label-inline ending-word-blue">？？？结局</span><span class="final-ending-name"><span class="ending-word-red">菜鸟</span>侦探</span>`;
+  }
+
+  if (endingTitle.includes("第四面墙")) {
+    return `<span class="final-ending-label-inline ending-word-blue">彩蛋</span><span class="final-ending-name">第四面墙</span>`;
+  }
+
   if (endingTitle.includes("幸存者的疯癫")) {
     return `<span class="final-ending-label-inline">结局一</span><span class="final-ending-name">幸存者的<span class="ending-word-red">疯癫</span></span>`;
   }
@@ -4284,6 +4470,13 @@ function getFinalEndingTitleHtml(endingTitle) {
 
 function getDebugEndingResult(endingKey) {
   const map = {
+    rookie: {
+      correctCount: 2,
+      endingTitle: "？？？结局：菜鸟侦探",
+      endingLabel: "？？？结局",
+      endingClass: "ending-rookie",
+      endingKey: "rookie"
+    },
     ending1: {
       correctCount: 4,
       endingTitle: "结局一：幸存者的疯癫",

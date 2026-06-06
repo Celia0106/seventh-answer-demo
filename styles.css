@@ -181,6 +181,7 @@ button {
 }
 
 .scene.locked {
+  display: none;
   color: rgba(244, 239, 230, 0.46);
 }
 
@@ -981,8 +982,16 @@ button {
 }
 
 .story-emphasis.red {
-  color: #ffb3aa;
-  text-shadow: 0 0 12px rgba(198, 58, 47, 0.4);
+  color: #e05a50;
+  text-shadow: 0 0 12px rgba(168, 24, 32, 0.42);
+}
+
+.story-emphasis.panic-red {
+  color: #ff4f43;
+  font-weight: 700;
+  text-shadow:
+    0 0 10px rgba(160, 12, 24, 0.58),
+    0 0 20px rgba(88, 0, 10, 0.32);
 }
 
 /* Y.Y.N. 直接在正文里被红线圈住，像侦探在案卷上做出的批注。 */
@@ -1057,6 +1066,15 @@ button {
   width: clamp(86px, 12vw, 126px);
 }
 
+.story-sketch.sketch-clock,
+.story-sketch.sketch-tape {
+  width: clamp(104px, 15vw, 152px);
+}
+
+.story-sketch.sketch-clock {
+  transform-origin: 50% 14%;
+}
+
 .story-sketch.sketch-knife {
   width: clamp(96px, 14vw, 142px);
 }
@@ -1116,6 +1134,14 @@ button {
 
 .story-sketch.sketch-key.is-visible {
   animation: sketchKeyTurn 1.05s ease 0.64s 1;
+}
+
+.story-sketch.sketch-clock.is-visible {
+  animation: sketchClockSwing 1.65s cubic-bezier(0.26, 0.78, 0.22, 1) 0.72s 1;
+}
+
+.story-sketch.sketch-tape.is-visible {
+  animation: sketchTapeJolt 1.2s ease 0.7s 1;
 }
 
 .story-sketch.sketch-recorder.is-visible {
@@ -2560,6 +2586,50 @@ body.corridor-blackout::after {
   }
 }
 
+@keyframes sketchClockSwing {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  18% {
+    transform: rotate(-7deg);
+  }
+
+  36% {
+    transform: rotate(6deg);
+  }
+
+  56% {
+    transform: rotate(-3.4deg);
+  }
+
+  76% {
+    transform: rotate(1.8deg);
+  }
+}
+
+@keyframes sketchTapeJolt {
+  0%,
+  100% {
+    filter: none;
+    transform: translateX(0) rotate(0deg);
+  }
+
+  28% {
+    filter: drop-shadow(0 0 11px rgba(155, 46, 56, 0.2));
+    transform: translateX(-2px) rotate(-0.8deg);
+  }
+
+  44% {
+    transform: translateX(2px) rotate(0.8deg);
+  }
+
+  62% {
+    transform: translateX(-1px) rotate(-0.4deg);
+  }
+}
+
 @keyframes sketchRecorderPulse {
   0%,
   100% {
@@ -2729,6 +2799,19 @@ body.corridor-blackout::after {
     opacity: 0.78;
     filter: drop-shadow(0 0 14px rgba(114, 160, 176, 0.08));
     transform: translateX(0) skewX(0deg);
+  }
+}
+
+@keyframes finalArchivePulse {
+  0%,
+  100% {
+    transform: translateY(0);
+    filter: drop-shadow(0 0 16px rgba(127, 216, 238, 0.08));
+  }
+
+  46% {
+    transform: translateY(-3px);
+    filter: drop-shadow(0 0 22px rgba(127, 216, 238, 0.18));
   }
 }
 
@@ -3710,6 +3793,12 @@ body.final-ending-transition::before {
     linear-gradient(180deg, #050304, #000 70%);
 }
 
+.final-ending-screen.ending-rookie {
+  background:
+    radial-gradient(circle at 50% 44%, rgba(104, 28, 22, 0.18), transparent 36%),
+    linear-gradient(180deg, #080505, #010101 70%);
+}
+
 .final-ending-screen.ending-wrong-shadow {
   background:
     radial-gradient(circle at 50% 44%, rgba(54, 70, 78, 0.18), transparent 36%),
@@ -3720,6 +3809,168 @@ body.final-ending-transition::before {
   background:
     radial-gradient(circle at 50% 44%, rgba(78, 145, 162, 0.18), transparent 38%),
     linear-gradient(180deg, #020506, #000 70%);
+}
+
+.final-ending-screen.ending-celia,
+.final-ending-screen.celia-easter-screen {
+  background:
+    radial-gradient(circle at 50% 46%, rgba(88, 139, 160, 0.2), transparent 40%),
+    linear-gradient(180deg, #02070a, #000 72%);
+}
+
+.celia-easter-inner {
+  width: min(880px, 100%);
+}
+
+.celia-easter-line {
+  margin: 0 0 16px;
+  color: #dbe7ea;
+  font-size: clamp(18px, 2.4vw, 25px);
+  line-height: 1.9;
+}
+
+.celia-ending-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 42px auto 0;
+  width: min(760px, 100%);
+}
+
+.celia-ending-choice {
+  position: relative;
+  border: 1px solid rgba(127, 216, 238, 0.28);
+  border-radius: 2px;
+  padding: 18px 16px 20px;
+  color: #edf7f9;
+  background:
+    linear-gradient(180deg, rgba(8, 29, 42, 0.72), rgba(4, 9, 14, 0.78));
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
+}
+
+.celia-ending-choice::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 12px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(127, 216, 238, 0.72), transparent);
+  transform: scaleX(0.58);
+  transition: transform 0.28s ease, background 0.28s ease;
+}
+
+.celia-ending-choice:hover {
+  border-color: rgba(127, 216, 238, 0.72);
+  box-shadow: 0 0 22px rgba(127, 216, 238, 0.14);
+  transform: translateY(-2px);
+}
+
+.celia-ending-choice:hover::after {
+  background: linear-gradient(90deg, transparent, rgba(201, 67, 80, 0.76), transparent);
+  transform: scaleX(1);
+}
+
+.celia-ending-choice .final-ending-label-inline,
+.celia-ending-choice .final-ending-name {
+  display: block;
+  font-size: clamp(15px, 2vw, 22px);
+}
+
+.final-retry-archive {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.final-retry-file-button {
+  width: clamp(92px, 14vw, 132px);
+  height: clamp(92px, 14vw, 132px);
+  border: 0;
+  padding: 0;
+  color: rgba(185, 210, 216, 0.7);
+  background: transparent;
+  cursor: pointer;
+  filter: drop-shadow(0 0 16px rgba(127, 216, 238, 0.08));
+  transition: color 0.28s ease, filter 0.28s ease, transform 0.28s ease;
+}
+
+.final-retry-file-button svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.final-retry-file-button path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.final-retry-archive.is-visible .final-retry-file-button path {
+  animation: sketchDraw 1.08s ease forwards;
+}
+
+.final-retry-archive.is-visible .final-retry-file-button {
+  animation: finalArchivePulse 1.45s ease 0.72s 1;
+}
+
+.final-retry-file-button:hover {
+  color: rgba(225, 238, 241, 0.92);
+  filter: drop-shadow(0 0 18px rgba(127, 216, 238, 0.16));
+  transform: translateY(-2px);
+}
+
+.final-retry-question {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.42s ease, transform 0.42s ease;
+}
+
+.final-retry-archive.is-asking .final-retry-question {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.final-retry-question p {
+  margin: 0;
+  color: #d8e7ea;
+  font-size: clamp(17px, 2.2vw, 23px);
+  letter-spacing: 0.08em;
+}
+
+.final-retry-question div {
+  display: flex;
+  gap: 12px;
+}
+
+.final-retry-question button {
+  border: 1px solid rgba(127, 216, 238, 0.36);
+  border-radius: 2px;
+  padding: 8px 22px;
+  color: #dbeff3;
+  background: rgba(6, 24, 34, 0.72);
+  cursor: pointer;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease, color 0.22s ease;
+}
+
+.final-retry-question button:hover {
+  border-color: rgba(127, 216, 238, 0.78);
+  color: #fff;
+  box-shadow: 0 0 16px rgba(127, 216, 238, 0.12);
 }
 
 .final-ending-story {
@@ -3978,6 +4229,23 @@ body.final-ending-transition::before {
   .final-answer-card {
     grid-template-columns: 34px 1fr;
     padding: 12px;
+  }
+
+  .celia-ending-grid {
+    grid-template-columns: 1fr;
+    width: min(420px, 100%);
+  }
+
+  .celia-ending-choice {
+    padding: 16px 14px 18px;
+  }
+
+  .final-retry-question div {
+    width: min(260px, 100%);
+  }
+
+  .final-retry-question button {
+    flex: 1;
   }
 
   .clue-grid {
