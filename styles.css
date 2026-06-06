@@ -4228,17 +4228,29 @@ body.final-ending-transition::before {
     padding: 18px;
   }
 
+  .final-panel {
+    max-height: calc(100dvh - 24px);
+    overflow-y: auto;
+  }
+
   .final-roster {
     grid-template-columns: 1fr;
   }
 
   .final-answer-grid.compact {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
   }
 
   .final-answer-card {
     grid-template-columns: 34px 1fr;
     padding: 12px;
+  }
+
+  .final-answer-grid.compact .final-answer-card {
+    min-height: 54px;
+    padding: 9px;
+    line-height: 1.35;
   }
 
   .celia-ending-grid {

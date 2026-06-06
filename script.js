@@ -45,7 +45,7 @@ const clues = [
     chapter: "prologue",
     title: "庄园名册",
     preview: "名册里没有“梅洛尔德”这个主人。",
-    description: "管家拿出的庄园名册记录了近六十年的产权转移。奇怪的是，庄园从未属于任何名叫‘梅洛尔德的人。这个名字像是凭空出现的。",
+    description: "管家拿出的庄园名册记录了近六十年的产权转移。奇怪的是，庄园从未属于任何名叫‘梅洛尔德’的人。这个名字像是凭空出现的。",
     isKey: false,
     icon: "register"
   },
@@ -108,7 +108,7 @@ const clues = [
     chapter: "chapter-one",
     title: "建筑图",
     preview: "旧建筑图右下角缺了一块。",
-    description: "书桌抽屉里压着一张梅尔洛德庄园的旧建筑图。右下角被人撕掉了一块，缺口位置正好对应二楼卧室后墙。",
+    description: "书桌抽屉里压着一张梅洛尔德庄园的旧建筑图。右下角被人撕掉了一块，缺口位置正好对应二楼卧室后墙。",
     isKey: true,
     icon: "plan"
   },
@@ -605,7 +605,7 @@ const scenes = [
   {
     chapter: "chapter-one",
     title: "第一幕：密室",
-    subtitle: "梅尔洛德庄园 · 二楼书房 · 00:17",
+    subtitle: "梅洛尔德庄园 · 二楼书房 · 00:17",
     number: "第一幕",
     buttonText: "开始推理",
     requiredKeyCount: 3,
@@ -652,7 +652,7 @@ const scenes = [
   {
     chapter: "chapter-two",
     title: "第二幕：旁观者",
-    subtitle: "梅尔洛德庄园 · 玻璃温室 · 01:36",
+    subtitle: "梅洛尔德庄园 · 玻璃温室 · 01:36",
     number: "第二幕",
     buttonText: "开始推理",
     requiredKeyCount: 2,
@@ -790,7 +790,7 @@ const scenes = [
   {
     chapter: "chapter-three",
     title: "第三幕：钥匙",
-    subtitle: "梅尔洛德庄园 · 主厅 / 东侧回廊 · 02:28",
+    subtitle: "梅洛尔德庄园 · 主厅 / 东侧回廊 · 02:28",
     number: "第三幕",
     buttonText: "开始推理",
     requiredKeyCount: 3,
@@ -977,7 +977,7 @@ const scenes = [
   {
     chapter: "chapter-four",
     title: "第四幕：谋杀死者",
-    subtitle: "梅尔洛德庄园 · 冷藏室 / 西侧走廊 · 03:41",
+    subtitle: "梅洛尔德庄园 · 冷藏室 / 西侧走廊 · 03:41",
     number: "第四幕",
     buttonText: "开始推理",
     requiredKeyCount: 3,
@@ -1193,7 +1193,7 @@ const scenes = [
         "不可能有人进来。",
         "不可能有人出去。",
         "不可能在所有人听得见声音的时候杀人。",
-        "可梅尔洛德庄园最擅长的，似乎就是把“不可能”变成现实。",
+        "可梅洛尔德庄园最擅长的，似乎就是把“不可能”变成现实。",
         "她们把许燃暂时留在暗房。",
         "俞以清用白布盖住他的脸。",
         "沈知微的话像挥之不去的呓语，那魔鬼的呓语再次回荡在她们耳边，",
@@ -1978,7 +1978,7 @@ const finalEndingStories = {
 
 或者说——
 
-俞以清和Y.N.N，俞以宁。
+俞以清和Y.Y.N，俞以宁。
 
 故事真正发生在十年前，那起事故的舞台并不在梅洛尔德庄园。而是一座位于旧城区边缘的会馆。
 
@@ -3375,11 +3375,14 @@ function goToFirstChapter() {
 }
 
 function enterUnlockedScene() {
-  if (currentSummaryChapterId === "chapter-three") {
+  const chapterFourIndex = getSceneIndexByChapter("chapter-four");
+
+  if (currentSummaryChapterId === "chapter-three" && deductionTargetSceneIndex === chapterFourIndex) {
     showInterludeBoard();
     return;
   }
 
+  currentSummaryChapterId = "";
   goToFirstChapter();
 }
 
@@ -4315,8 +4318,9 @@ function renderFinalEndingScreen(result) {
     const linesHtml = pageLines.map((text, lineIndex) => {
       const delay = `${lineIndex * 0.16}s`;
       const emphasisClass = getEndingLineClass(text);
+      const sketchHtml = shouldSuppressFinalEndingSketch(text, isLastEndingPage) ? "" : getStorySketchHtml(text);
 
-      return `<p class="final-ending-text story-line${emphasisClass}" style="transition-delay: ${delay}">${getEndingLineHtml(text)}</p>${getStorySketchHtml(text)}`;
+      return `<p class="final-ending-text story-line${emphasisClass}" style="transition-delay: ${delay}">${getEndingLineHtml(text)}</p>${sketchHtml}`;
     }).join("");
 
     return `
@@ -4347,6 +4351,10 @@ function renderFinalEndingScreen(result) {
     observeStorySketches();
     bindFinalRetryArchive();
   }, 80);
+}
+
+function shouldSuppressFinalEndingSketch(text, isLastEndingPage) {
+  return isLastEndingPage && getStorySketchType(text) === "file";
 }
 
 function getFinalRetryArchiveHtml() {
@@ -4794,7 +4802,8 @@ function triggerChapterThreeBlackout() {
 }
 
 function scrollToScene(index, behavior = "smooth") {
-  const targetScene = document.querySelector(`#scene-${index}`);
+  const safeIndex = Math.max(0, Math.min(index, unlockedSceneIndex));
+  const targetScene = document.querySelector(`#scene-${safeIndex}`);
 
   if (targetScene) {
     targetScene.scrollIntoView({ behavior, block: "start" });
