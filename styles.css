@@ -156,7 +156,7 @@ button {
 /* 主游戏页面 */
 .game {
   min-height: 100vh;
-  padding-bottom: 76px;
+  padding-bottom: 0;
   background:
     linear-gradient(115deg, rgba(12, 15, 17, 0.96), rgba(30, 22, 20, 0.86)),
     repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0, rgba(255, 255, 255, 0.025) 1px, transparent 1px, transparent 68px),
@@ -181,7 +181,7 @@ button {
 }
 
 .scene.locked {
-  display: none;
+  display: none !important;
   color: rgba(244, 239, 230, 0.46);
 }
 
@@ -1072,7 +1072,13 @@ button {
 }
 
 .story-sketch.sketch-clock {
-  transform-origin: 50% 14%;
+  width: clamp(84px, 10vw, 112px);
+  transform-origin: 50% 4%;
+}
+
+.story-sketch.sketch-clock .clock-watch-swing {
+  transform-box: view-box;
+  transform-origin: 48px 34px;
 }
 
 .story-sketch.sketch-knife {
@@ -1137,7 +1143,11 @@ button {
 }
 
 .story-sketch.sketch-clock.is-visible {
-  animation: sketchClockSwing 1.65s cubic-bezier(0.26, 0.78, 0.22, 1) 0.72s 1;
+  animation: pocketWatchSwing 2.05s cubic-bezier(0.26, 0.78, 0.22, 1) 0.62s 1;
+}
+
+.story-sketch.sketch-clock.is-visible .clock-watch-swing {
+  animation: none;
 }
 
 .story-sketch.sketch-tape.is-visible {
@@ -2586,26 +2596,26 @@ body.corridor-blackout::after {
   }
 }
 
-@keyframes sketchClockSwing {
+@keyframes pocketWatchSwing {
   0%,
   100% {
     transform: rotate(0deg);
   }
 
   18% {
-    transform: rotate(-7deg);
+    transform: rotate(-4.6deg);
   }
 
-  36% {
-    transform: rotate(6deg);
+  38% {
+    transform: rotate(3.8deg);
   }
 
-  56% {
-    transform: rotate(-3.4deg);
+  58% {
+    transform: rotate(-2.2deg);
   }
 
-  76% {
-    transform: rotate(1.8deg);
+  78% {
+    transform: rotate(1.1deg);
   }
 }
 

@@ -2746,16 +2746,23 @@ function getStorySketchHtml(text) {
       </svg>
     `,
     clock: `
-      <svg viewBox="0 0 96 104" focusable="false">
-        <path pathLength="1" d="M38 12h20" />
-        <path pathLength="1" d="M48 12v10" />
-        <path pathLength="1" d="M28 24c-10 7-16 18-16 31c0 22 16 38 36 38s36-16 36-38c0-13-6-24-16-31" />
-        <path pathLength="1" d="M22 55a26 26 0 1 0 52 0a26 26 0 1 0-52 0" />
-        <path pathLength="1" d="M48 55V39" />
-        <path pathLength="1" d="M48 55l12 9" />
-        <path pathLength="1" d="M31 20l-8-8" />
-        <path pathLength="1" d="M65 20l8-8" />
-        <path class="sketch-accent sketch-pendulum" pathLength="1" d="M48 82c-3 6-5 10-8 13m8-13c3 6 5 10 8 13" />
+      <svg viewBox="0 0 96 128" focusable="false">
+        <path pathLength="1" d="M40 6h16" />
+        <path pathLength="1" d="M48 6v28" />
+        <path pathLength="1" d="M42 34c2-6 10-6 12 0" />
+        <g class="clock-watch-swing">
+          <path pathLength="1" d="M48 34v10" />
+          <path pathLength="1" d="M38 44h20" />
+          <path pathLength="1" d="M44 44c-14 3-25 17-25 35c0 23 13 39 29 39s29-16 29-39c0-18-11-32-25-35" />
+          <path pathLength="1" d="M27 79a21 24 0 1 0 42 0a21 24 0 1 0-42 0" />
+          <path pathLength="1" d="M48 79V62" />
+          <path pathLength="1" d="M48 79l11 8" />
+          <path pathLength="1" d="M48 55v5" />
+          <path pathLength="1" d="M48 98v5" />
+          <path pathLength="1" d="M29 79h5" />
+          <path pathLength="1" d="M62 79h5" />
+          <path class="sketch-accent" pathLength="1" d="M35 55c7-4 19-4 26 0" />
+        </g>
       </svg>
     `,
     key: `
@@ -4450,7 +4457,7 @@ function getFinalQuizResult() {
 
 function getFinalEndingTitleHtml(endingTitle) {
   if (endingTitle.includes("菜鸟侦探")) {
-    return `<span class="final-ending-label-inline ending-word-blue">？？？结局</span><span class="final-ending-name"><span class="ending-word-red">菜鸟</span>侦探</span>`;
+    return `<span class="final-ending-label-inline ending-word-blue">？？？结局</span><span class="final-ending-name">菜鸟侦探</span>`;
   }
 
   if (endingTitle.includes("第四面墙")) {
