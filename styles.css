@@ -89,6 +89,49 @@ button {
   animation-delay: 4.25s;
 }
 
+.debug-jump-panel {
+  width: min(680px, 100%);
+  margin: 18px auto 0;
+  padding: 12px;
+  border: 1px solid rgba(160, 205, 218, 0.22);
+  border-radius: 8px;
+  background: rgba(7, 12, 16, 0.72);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.32);
+  opacity: 0;
+  animation: lineFadeIn 0.9s ease forwards;
+  animation-delay: 4.55s;
+}
+
+.debug-jump-panel p {
+  margin: 0 0 9px;
+  color: rgba(220, 240, 245, 0.72);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.debug-jump-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.debug-jump-buttons button {
+  border: 1px solid rgba(244, 239, 230, 0.28);
+  border-radius: 6px;
+  padding: 7px 10px;
+  color: #edf7fb;
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 12px;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+
+.debug-jump-buttons button:hover {
+  border-color: rgba(242, 211, 139, 0.72);
+  background: rgba(242, 211, 139, 0.12);
+  transform: translateY(-1px);
+}
+
 @keyframes lineFadeIn {
   from {
     opacity: 0;

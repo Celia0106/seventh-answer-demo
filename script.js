@@ -2511,6 +2511,7 @@ Memory Lives ，Revenge Delivers.
 const intro = document.querySelector("#intro");
 const game = document.querySelector("#game");
 const enterButton = document.querySelector("#enterButton");
+const debugJumpButtons = document.querySelector("#debugJumpButtons");
 const sceneContainer = document.querySelector("#sceneContainer");
 
 const progressText = document.querySelector("#progressText");
@@ -2615,6 +2616,7 @@ const completedInterludePairs = new Set();
 // ==============================
 
 renderScenes();
+renderDebugJumpButtons();
 renderFinalAnswers();
 updateProgress();
 
@@ -2705,6 +2707,111 @@ function renderScenes() {
 
 function renderFinalAnswers() {
   renderFinalQuestion();
+}
+
+// 临时检查入口：用于制作阶段快速跳到任意章节或结局，正式发布前可整段删除。
+function renderDebugJumpButtons() {
+  if (!debugJumpButtons) {
+    return;
+  }
+
+  const sceneButtons = scenes.map((scene, index) => {
+    return `
+      <button type="button" data-debug-scene="${index}">
+        ${escapeHtmlText(scene.title || scene.number)}
+      </button>
+    `;
+  }).join("");
+
+  const endingButtons = [
+    { label: "最终推理", action: "final-quiz" },
+    { label: "？？？结局", ending: "rookie" },
+    { label: "结局一", ending: "ending1" },
+    { label: "结局二", ending: "ending2" },
+    { label: "TRUE END", ending: "true" },
+    { label: "彩蛋", ending: "celia" }
+  ].map((item) => {
+    const actionAttr = item.action ? ` data-debug-action="${item.action}"` : "";
+    const endingAttr = item.ending ? ` data-debug-ending="${item.ending}"` : "";
+
+    return `<button type="button"${actionAttr}${endingAttr}>${item.label}</button>`;
+  }).join("");
+
+  debugJumpButtons.innerHTML = `${sceneButtons}${endingButtons}`;
+  debugJumpButtons.querySelectorAll("button").forEach((button) => {
+    button.addEventListener("click", handleDebugJump);
+  });
+}
+
+function handleDebugJump(event) {
+  const button = event.currentTarget;
+
+  if (button.dataset.debugScene) {
+    jumpToDebugScene(Number(button.dataset.debugScene));
+    return;
+  }
+
+  if (button.dataset.debugAction === "final-quiz") {
+    jumpToFinalQuiz();
+    return;
+  }
+
+  if (button.dataset.debugEnding) {
+    jumpToDebugEnding(button.dataset.debugEnding);
+  }
+}
+
+function prepareDebugPreview() {
+  intro.classList.add("hidden");
+  game.classList.remove("hidden");
+  clueModal.classList.add("hidden");
+  finalModal.classList.add("hidden");
+  chapterCompleteOverlay.classList.add("hidden");
+  chapterCompleteOverlay.classList.remove("play-complete", "show-panel", "study-complete", "greenhouse-complete", "key-complete", "darkroom-complete");
+  interludeBoard.classList.add("hidden");
+  interludeBoard.classList.remove("question-solved", "finalizing", "show-final", "red-lines-active", "interlude-fade-out");
+  chapterFourPrelude.classList.add("hidden");
+  chapterFourPrelude.classList.remove("visible", "ready");
+  document.querySelector("#finalEndingScreen")?.classList.add("hidden");
+}
+
+function jumpToDebugScene(sceneIndex) {
+  if (!Number.isInteger(sceneIndex) || !scenes[sceneIndex]) {
+    return;
+  }
+
+  prepareDebugPreview();
+  unlockedSceneIndex = Math.max(unlockedSceneIndex, sceneIndex);
+  currentSceneIndex = sceneIndex;
+  renderScenes();
+  updateProgress();
+  scrollToScene(sceneIndex, "auto");
+}
+
+function jumpToFinalQuiz() {
+  const finalSceneIndex = getSceneIndexByChapter("final");
+
+  if (finalSceneIndex >= 0) {
+    jumpToDebugScene(finalSceneIndex);
+  } else {
+    prepareDebugPreview();
+  }
+
+  window.setTimeout(openFinalModal, 120);
+}
+
+function jumpToDebugEnding(endingKey) {
+  const finalSceneIndex = getSceneIndexByChapter("final");
+
+  prepareDebugPreview();
+  if (finalSceneIndex >= 0) {
+    unlockedSceneIndex = Math.max(unlockedSceneIndex, finalSceneIndex);
+    currentSceneIndex = finalSceneIndex;
+    renderScenes();
+    updateProgress();
+  }
+
+  showFinalEndingScreen(getDebugEndingResult(endingKey));
 }
 
 function getSceneTextHtml(scene) {
